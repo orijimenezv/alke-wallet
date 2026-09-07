@@ -1,0 +1,220 @@
+/* ============================================
+   Estilos generales - Billetera Digital
+   ============================================ */
+
+:root {
+  --wallet-primary: #4f46e5;
+  --wallet-primary-dark: #3730a3;
+  --wallet-accent: #22c55e;
+  --wallet-bg: #f3f4f6;
+  --wallet-card-radius: 1rem;
+}
+
+body {
+  background: linear-gradient(160deg, #eef2ff 0%, #f3f4f6 60%, #e0e7ff 100%);
+  min-height: 100vh;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+}
+
+.wallet-card {
+  background: #ffffff;
+  border: none;
+  border-radius: var(--wallet-card-radius);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+}
+
+.wallet-header {
+  color: var(--wallet-primary-dark);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.wallet-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--wallet-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin: 0 auto 1rem auto;
+}
+
+.btn-wallet-primary {
+  background-color: var(--wallet-primary);
+  border-color: var(--wallet-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-wallet-primary:hover {
+  background-color: var(--wallet-primary-dark);
+  border-color: var(--wallet-primary-dark);
+  color: #fff;
+}
+
+.btn-wallet-outline {
+  border: 2px solid var(--wallet-primary);
+  color: var(--wallet-primary-dark);
+  font-weight: 600;
+  background: #fff;
+}
+
+.btn-wallet-outline:hover {
+  background: var(--wallet-primary);
+  color: #fff;
+}
+
+.saldo-box {
+  background: linear-gradient(135deg, var(--wallet-primary) 0%, #6366f1 100%);
+  color: #fff;
+  border-radius: var(--wallet-card-radius);
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+}
+
+.saldo-box .saldo-label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.saldo-box .saldo-monto {
+  font-size: 2.25rem;
+  font-weight: 800;
+}
+
+.menu-btn {
+  padding: 1.1rem;
+  border-radius: 0.9rem;
+  font-size: 1.05rem;
+}
+
+.list-group-item-transaction {
+  border-radius: 0.75rem !important;
+  margin-bottom: 0.6rem;
+  border: 1px solid #e5e7eb !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.list-group-item-transaction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.movement-amount-positive {
+  color: var(--wallet-accent);
+  font-weight: 700;
+}
+
+.movement-amount-negative {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.contact-item {
+  cursor: pointer;
+  border-radius: 0.75rem !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.contact-item:hover {
+  background-color: #eef2ff;
+}
+
+.contact-item.active {
+  background-color: #eef2ff;
+  border-color: var(--wallet-primary) !important;
+}
+
+.contact-item.active .select-check {
+  display: inline-block !important;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.wallet-footer-link {
+  color: var(--wallet-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.wallet-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   Elementos agregados para la actividad jQuery
+   ============================================ */
+.demo-box {
+  background: #f8f9fa;
+  border: 1px dashed #c7d2fe;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  color: #4b5563;
+}
+
+.deposit-legend {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+}
+
+.saldo-mini {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contact-form-box {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.selected-contact-box {
+  background: #eef2ff;
+}
+
+.contact-avatar,
+.transaction-icon {
+  width: 42px;
+  height: 42px;
+  font-size: 1rem;
+  margin: 0 12px 0 0;
+  flex: 0 0 42px;
+}
+
+.positive-icon {
+  background: #22c55e;
+}
+
+.negative-icon {
+  background: #ef4444;
+}
+
+@media (max-width: 575.98px) {
+  .saldo-box .saldo-monto {
+    font-size: 1.8rem;
+  }
+
+  .list-group-item-transaction {
+    align-items: flex-start !important;
+    gap: 0.75rem;
+  }
+}

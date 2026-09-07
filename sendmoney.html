@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billetera Digital · Enviar Dinero</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-8 col-lg-6">
+        <div class="wallet-card p-4 p-md-5">
+          <div class="d-flex align-items-center mb-4">
+            <a href="menu.html" class="btn btn-sm btn-light border me-3" aria-label="Volver al menú">
+              <i class="bi bi-arrow-left"></i>
+            </a>
+            <h2 class="wallet-header mb-0">Enviar Dinero</h2>
+          </div>
+
+          <div class="saldo-mini mb-4">
+            saldo disponible <strong id="saldoEnvio">$0,00</strong>
+          </div>
+
+          <form id="searchForm" class="mb-3" novalidate>
+            <label for="buscarContacto" class="form-label">Buscar en la agenda de transferencias</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="buscarContacto" placeholder="Nombre o alias">
+              <button class="btn btn-wallet-primary" type="submit">
+                <i class="bi bi-search me-1"></i>Buscar
+              </button>
+            </div>
+          </form>
+
+          <div class="d-flex justify-content-end mb-3">
+            <button type="button" id="btnMostrarContacto" class="btn btn-wallet-outline btn-sm">
+              <i class="bi bi-person-plus me-1"></i>Agregar nuevo contacto
+            </button>
+          </div>
+
+          <div id="nuevoContactoContainer" class="contact-form-box mb-4" style="display:none">
+            <h5 class="mb-3">Nuevo contacto</h5>
+            <div id="contactoAlertContainer"></div>
+            <form id="nuevoContactoForm" novalidate>
+              <div class="mb-3">
+                <label for="contactoNombre" class="form-label">Nombre y apellido</label>
+                <input type="text" class="form-control" id="contactoNombre" required>
+                <div class="invalid-feedback">Ingresá el nombre del contacto</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="contactoCbu" class="form-label">Número de CBU</label>
+                <input type="text" class="form-control" id="contactoCbu" inputmode="numeric" maxlength="22" placeholder="22 dígitos" required>
+                <div class="invalid-feedback">El CBU debe tener exactamente 22 números</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="contactoAlias" class="form-label">Alias</label>
+                <input type="text" class="form-control" id="contactoAlias" required>
+                <div class="invalid-feedback">Ingresá un alias</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="contactoBanco" class="form-label">Banco</label>
+                <input type="text" class="form-control" id="contactoBanco" required>
+                <div class="invalid-feedback">Ingresá el banco</div>
+              </div>
+
+              <div class="d-flex gap-2 justify-content-end">
+                <button type="button" id="btnCancelarContacto" class="btn btn-light">Cancelar</button>
+                <button type="submit" class="btn btn-wallet-primary">Guardar contacto</button>
+              </div>
+            </form>
+          </div>
+
+          <h6 class="text-muted mb-2">Agenda de contactos</h6>
+          <div id="listaContactos" class="list-group mb-3"></div>
+          <p id="sinResultados" class="text-muted small d-none">No se encontraron contactos con ese criterio</p>
+
+          <div id="contactoSeleccionadoBox" class="border rounded-3 p-3 mb-3 d-none selected-contact-box">
+            <div class="small text-muted mb-1">Contacto seleccionado</div>
+            <div class="fw-semibold" id="contactoSeleccionadoNombre">—</div>
+            <div class="text-muted small mb-3" id="contactoSeleccionadoAlias">—</div>
+
+            <form id="enviarDineroForm" novalidate>
+              <div class="mb-3">
+                <label for="montoEnvio" class="form-label">Monto a enviar</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="montoEnvio" min="1" step="0.01" required>
+                </div>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" id="btnEnviarDinero" class="btn btn-wallet-primary">
+                  <i class="bi bi-send-fill me-2"></i>Enviar Dinero
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="envioConfirmacion" class="alert d-none mt-3" role="alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
