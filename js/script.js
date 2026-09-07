@@ -95,6 +95,7 @@ function getTipoTransaccion(tipo) {
   const tipos = {
     compra: 'Compra',
     deposito: 'Depósito',
+    retiro: 'Retiro',
     transferencia_recibida: 'Transferencia recibida',
     transferencia_enviada: 'Transferencia enviada'
   };
@@ -171,6 +172,10 @@ $(document).ready(function () {
       redirigir('depósito', 'deposit.html');
     });
 
+    $('#btnRetirar').click(function () {
+      redirigir('retiro de dinero', 'withdraw.html');
+    });
+
     $('#btnMenuEnviar').click(function () {
       redirigir('enviar dinero', 'sendmoney.html');
     });
@@ -223,7 +228,68 @@ $(document).ready(function () {
       }, 2000);
     });
   }
+    /* =======================================================
+   RETIRO DE DINERO
+   ======================================================= */
 
+if ($('#retiroForm').length) {
+
+  $('#saldoRetiro').text(formatearMonto(obtenerSaldo()));
+
+  $('#retiroForm').submit(function (event) {
+
+    event.preventDefault();
+
+    const monto = Number($('#montoRetiro').val());
+    const saldoActual = obtenerSaldo();
+
+    if (!monto || monto <= 0) {
+
+      $('#retiroAlertContainer').html(
+        crearAlerta('danger', 'Ingresá un monto válido')
+      );
+
+      return;
+    }
+
+    if (monto > saldoActual) {
+
+      $('#retiroAlertContainer').html(
+        crearAlerta('danger', 'Saldo insuficiente para realizar el retiro')
+      );
+
+      return;
+    }
+
+    const nuevoSaldo = saldoActual - monto;
+
+    guardarSaldo(nuevoSaldo);
+
+    agregarMovimiento(
+      'retiro',
+      'Retiro de dinero',
+      -monto
+    );
+
+    $('#saldoRetiro').text(formatearMonto(nuevoSaldo));
+
+    $('#retiroAlertContainer').html(
+      crearAlerta(
+        'success',
+        'Retiro realizado correctamente nuevo saldo ' +
+        formatearMonto(nuevoSaldo)
+      )
+    );
+
+    $('#montoRetiro').val('');
+
+    setTimeout(function () {
+      window.location.href = 'menu.html';
+    }, 2000);
+
+  });
+
+  }
   /* =======================================================
      ENVIAR DINERO
      ======================================================= */
