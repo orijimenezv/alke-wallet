@@ -179,7 +179,9 @@ $(document).ready(function () {
     $('#btnMenuEnviar').click(function () {
       redirigir('enviar dinero', 'sendmoney.html');
     });
-
+    $('#btnRecibir').click(function () {
+      redirigir('recibir dinero', 'receive.html');
+    });
     $('#btnMovimientos').click(function () {
       redirigir('últimos movimientos', 'transactions.html');
     });
@@ -468,8 +470,61 @@ if ($('#retiroForm').length) {
 
       $('#montoEnvio').val('');
     });
-  }
+       }
+    /* =======================================================
+    RECIBIR DINERO
+   ======================================================= */
 
+  if ($('#recepcionForm').length) {
+
+    $('#saldoRecepcion').text(formatearMonto(obtenerSaldo()));
+
+    $('#recepcionForm').submit(function (event) {
+
+    event.preventDefault();
+
+    const monto = Number($('#montoRecepcion').val());
+
+  if (!monto || monto <= 0) {
+
+      $('#recepcionAlertContainer').html(
+        crearAlerta('danger', 'Ingresá un monto válido')
+      );
+
+      return;
+    }
+
+    const saldoActual = obtenerSaldo();
+
+    const nuevoSaldo = saldoActual + monto;
+
+    guardarSaldo(nuevoSaldo);
+
+    agregarMovimiento(
+      'transferencia_recibida',
+      'Transferencia recibida',
+      monto
+    );
+
+    $('#saldoRecepcion').text(formatearMonto(nuevoSaldo));
+
+    $('#recepcionAlertContainer').html(
+      crearAlerta(
+        'success',
+        'Dinero recibido correctamente nuevo saldo ' +
+        formatearMonto(nuevoSaldo)
+      )
+    );
+
+    $('#montoRecepcion').val('');
+
+    setTimeout(function () {
+      window.location.href = 'menu.html';
+    }, 2000);
+
+  });
+
+  }
   /* =======================================================
      ÚLTIMOS MOVIMIENTOS
      ======================================================= */
