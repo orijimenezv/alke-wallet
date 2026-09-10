@@ -8,11 +8,29 @@ Proyecto realizado por **Orielle Jiménez** durante su formación **Full Stack J
 
 Practicar formularios, eventos, manipulación del DOM, validaciones y persistencia local mediante una aplicación con varias pantallas y un recorrido completo de operaciones simuladas.
 
-## Demo y capturas
+## Demo
 
-**GitHub Pages:** pendiente de publicación. Aquí se agregará el enlace verificado.
+**[Ver demo](https://orijimenezv.github.io/alke-wallet/)**
 
-**Capturas:** pendientes de incorporar. Se agregarán imágenes reales del login, menú, envío e historial, en escritorio y móvil.
+Demo publicada en GitHub Pages desde `main` y verificada: inicio de sesión, depósito y aparición del movimiento en el historial.
+
+## Capturas
+
+Capturas reales de la demo publicada, tomadas durante su verificación.
+
+### Inicio de sesión
+
+![Inicio de sesión demo confirmado](assets/screenshots/login.png)
+
+### Menú principal
+
+![Menú principal con el saldo actualizado después del depósito](assets/screenshots/menu.png)
+
+### Historial
+
+![Historial con el depósito realizado en la demo](assets/screenshots/historial.png)
+
+La captura de envío de dinero está pendiente de incorporar.
 
 ## Funcionalidades
 
