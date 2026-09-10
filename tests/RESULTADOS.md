@@ -40,5 +40,5 @@ Se utilizó un servidor local bajo `/alke-wallet/`, para comprobar las rutas rel
 
 - Los casos de almacenamiento corrupto, cuota de escritura y compatibilidad de datos anteriores se prueban automáticamente en memoria; no se modificó manualmente el almacenamiento real del usuario.
 - No se ejecutó PostgreSQL: `psql` no está disponible en este entorno. Se revisó el SQL y se documentó su ejecución; la prueba de integridad intencionalmente fallida está comentada.
-- No se activó GitHub Pages. Falta verificar la URL real después del push y despliegue.
+- GitHub Pages fue activado desde `main`. En la [demo publicada](https://orijimenezv.github.io/alke-wallet/), la autora verificó el login, realizó un depósito correctamente y comprobó que el movimiento apareciera en el historial.
 - La revisión móvil y de teclado es básica; no constituye una auditoría completa con lectores de pantalla ni una matriz de navegadores.
