@@ -39,6 +39,16 @@ function validarMonto(entrada) {
   return centavos;
 }
 
+// La versión anterior podía guardar 15000.300000000001 por aritmética decimal.
+// Admitimos solo ese pequeño error en datos antiguos; las entradas nuevas son estrictas.
+function centavosGuardados(valor) {
+  if (valor === null || !/^\d+(\.\d+)?$/.test(String(valor))) return null;
+  const numero = Number(valor);
+  const centavos = Math.round(numero * 100);
+  return Number.isSafeInteger(centavos) && centavos <= MAX_CENTAVOS &&
+    Math.abs(numero * 100 - centavos) < 0.0001 ? centavos : null;
+}
+
 function formatearMonto(valor) {
   return Number(valor).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
 }
@@ -66,7 +76,7 @@ function contactoValido(contacto) {
 function movimientoValido(movimiento) {
   return movimiento && Object.hasOwn(TIPOS_MOVIMIENTO, movimiento.tipo) &&
     typeof movimiento.detalle === 'string' && typeof movimiento.monto === 'number' &&
-    Number.isFinite(movimiento.monto) && aCentavos(Math.abs(movimiento.monto)) !== null &&
+    Number.isFinite(movimiento.monto) && centavosGuardados(Math.abs(movimiento.monto)) !== null &&
     fechaMovimiento(movimiento.fecha) !== null;
 }
 
@@ -98,7 +108,7 @@ function obtenerMovimientos() {
 }
 
 function obtenerSaldoCentavos() {
-  const saldo = aCentavos(localStorage.getItem('walletSaldo') ?? '');
+  const saldo = centavosGuardados(localStorage.getItem('walletSaldo'));
   if (saldo === null) throw new Error('El saldo guardado no es válido. No se modificó. Revisá walletSaldo en localStorage o seguí el README para reiniciar la demo.');
   return saldo;
 }

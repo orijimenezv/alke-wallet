@@ -38,6 +38,7 @@ function alEnviar(selector, accion) {
 }
 
 $(document).ready(function () {
+  $.fx.off = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const esLogin = $('#loginForm').length > 0;
   if (!esLogin && !sesionActiva()) {
     window.location.replace('login.html');
@@ -67,10 +68,10 @@ $(document).ready(function () {
     if (!this.checkValidity()) { $(this).addClass('was-validated'); this.reportValidity(); return; }
     const email = $('#email').val().trim().toLowerCase();
     const correcto = email === USUARIO_VALIDO.email && $('#password').val() === USUARIO_VALIDO.password;
+    if (correcto) localStorage.setItem('walletUserEmail', email);
     $('#loginMensaje').removeClass('d-none alert-success alert-danger').addClass(correcto ? 'alert-success' : 'alert-danger')
       .text(correcto ? 'Inicio de sesión exitoso. Redirigiendo al menú…' : 'Correo o contraseña incorrectos.');
     if (correcto) {
-      localStorage.setItem('walletUserEmail', email);
       $('#btnLogin').prop('disabled', true).text('Ingresando…');
       setTimeout(() => { window.location.href = 'menu.html'; }, 1200);
     }
