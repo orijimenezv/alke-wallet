@@ -89,7 +89,7 @@
                 <label for="montoEnvio" class="form-label">Monto a enviar</label>
                 <div class="input-group">
                   <span class="input-group-text">$</span>
-                  <input type="number" class="form-control" id="montoEnvio" min="1" step="0.01" required>
+                  <input type="number" class="form-control" id="montoEnvio" min="0.01" max="999999999.99" step="0.01" required>
                 </div>
               </div>
 
@@ -109,6 +109,7 @@
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/wallet.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
