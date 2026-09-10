@@ -1,6 +1,6 @@
 # Verificación de Alke Wallet
 
-Fecha: 10 de septiembre de 2026. Pruebas realizadas en la rama de mejoras, sin publicar ni hacer push.
+Fecha: 10 de septiembre de 2026. Pruebas realizadas en la rama de mejoras antes de su integración a main. La rama fue posteriormente publicada en GitHub para revisión mediante Pull Request.
 
 ## Pruebas automatizadas
 
