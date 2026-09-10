@@ -86,8 +86,12 @@ alke-wallet/
 ├── receive.html           # Recepción simulada
 ├── transactions.html      # Historial y filtros
 ├── css/style.css          # Identidad visual y responsive
+├── js/wallet.js           # Datos, sesión y reglas de operaciones
 ├── js/script.js           # Eventos e interfaz de las pantallas
 ├── database/AlkeWallet.sql # Ejercicio complementario
+├── database/README.md     # Ejecución en PostgreSQL
+├── tests/wallet.test.cjs   # Pruebas de reglas y rutas
+├── tests/RESULTADOS.md     # Alcance de la verificación
 └── README.md
 ```
 
@@ -98,6 +102,26 @@ Se guardan las claves `walletSaldo`, `walletContactos`, `walletMovimientos` y `w
 El saldo inicial de **ARS 15.000** corresponde a una apertura de ARS 11.100 más los cuatro movimientos demo (−2.500 + 5.000 + 3.200 − 1.800). La apertura no es una operación adicional. Cerrar sesión conserva los movimientos.
 
 Para empezar de nuevo, eliminar únicamente esas cuatro claves desde las herramientas de desarrollo del navegador y recargar. No usar datos personales, contraseñas reales ni información bancaria real.
+
+### Recuperación y validaciones
+
+Las listas con JSON o registros inválidos se respaldan en claves con sufijo `Respaldo-<fecha en milisegundos>` antes de repararlas. Se conservan los registros válidos; una lista de contactos ilegible vuelve a los ejemplos y un historial ilegible queda vacío. Aparece un aviso: el historial recuperado puede estar incompleto y el saldo no se recalcula a partir de él. Si no se puede guardar el respaldo, no se sobrescribe el original.
+
+Un saldo inválido se conserva y bloquea las operaciones hasta corregirlo o reiniciar la demo. Los pequeños errores decimales producidos por la versión anterior se normalizan al leerlos. Un navegador sin almacenamiento disponible muestra un error y no confirma operaciones.
+
+Los montos nuevos admiten de 0,01 a 999.999.999,99 ARS, con hasta dos decimales. Los cálculos se hacen con centavos enteros y se conserva el formato anterior de las claves para no perder datos existentes. Las fechas nuevas se guardan en ISO; también se leen las fechas antiguas día/mes/año y se ordena el historial del más reciente al más antiguo.
+
+## Pruebas
+
+Para ejecutar las pruebas de reglas, almacenamiento y rutas se necesita Node.js 18 o posterior, únicamente como herramienta de desarrollo:
+
+```bash
+node --check js/wallet.js
+node --check js/script.js
+node --test tests/wallet.test.cjs
+```
+
+No se requieren dependencias npm. Consultar [resultados y alcance de las pruebas](tests/RESULTADOS.md). La aplicación publicada no necesita Node.js.
 
 ## Ejercicio SQL complementario
 
