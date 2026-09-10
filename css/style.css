@@ -218,3 +218,38 @@ body {
     gap: 0.75rem;
   }
 }
+
+/* Accesibilidad y contenido largo sin cambiar la identidad de la billetera. */
+:focus-visible {
+  outline: 3px solid var(--wallet-primary-dark);
+  outline-offset: 3px;
+}
+.btn-wallet-primary:focus-visible {
+  color: #fff;
+  background: var(--wallet-primary-dark);
+}
+.btn-wallet-primary:disabled {
+  color: #fff;
+  background: var(--wallet-primary-dark);
+  border-color: var(--wallet-primary-dark);
+}
+.contact-item.active { color: #1f2937; }
+.movement-amount-positive { color: #15803d; }
+.movement-amount-negative { color: #b91c1c; }
+.contact-details, .movement-details, .movement-details > div:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.contact-item > div { min-width: 0; }
+.saldo-monto, .saldo-mini, #userBadge, #contactoSeleccionadoBox {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+@media (max-width: 575.98px) {
+  .saldo-mini { flex-wrap: wrap; }
+  .list-group-item-transaction { flex-wrap: wrap; }
+  .list-group-item-transaction > div:last-child { margin-left: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
